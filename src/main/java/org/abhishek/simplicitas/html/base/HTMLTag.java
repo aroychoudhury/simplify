@@ -99,7 +99,7 @@ public abstract class HTMLTag<T extends HTMLTag> {
                 throw new IllegalStateException("Builder Access could not be done", e);
             }
         } else if (null == this.tagContent && !"".equals(this.tagContent) && null == this.builderClazz) {
-            throw new IllegalStateException("Builder not set");
+            throw new IllegalStateException("Missing content; builder is also not set");
         }
         return this.tagContent;
     }
@@ -140,7 +140,9 @@ public abstract class HTMLTag<T extends HTMLTag> {
     }
 
     /**
-     * Sets the content of this tag; it can be inner HTML or inner Text.
+     * Sets the content of this tag.
+     * 
+     * If the content is set, then we will not call the 
      * 
      * @param content
      *            the content to be set

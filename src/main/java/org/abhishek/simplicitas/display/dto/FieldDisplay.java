@@ -1,14 +1,15 @@
 /* Copyright 2016 Roychoudhury, Abhishek */
 
-package org.abhishek.simplicitas.display.domain;
+package org.abhishek.simplicitas.display.dto;
 
 /**
- * TODO
+ * Encapsulates data in the format such that it can be used to display data as a
+ * Form Field.
  * 
  * @author abhishek
  * @since 1.0
  */
-public class DisplayBase {
+public class FieldDisplay {
     private String name;
     private Object value;
     private String dataType;
@@ -24,7 +25,7 @@ public class DisplayBase {
      * @author abhishek
      * @since 1.0
      */
-    public DisplayBase(String name, Object value, String dataType) {
+    public FieldDisplay(String name, Object value, String dataType) {
         super();
         this.name = name;
         this.value = value;
@@ -45,15 +46,13 @@ public class DisplayBase {
      * @author abhishek
      * @since 1.0
      */
-    public DisplayBase(String name, Object value, String dataType, String[] paramType) {
+    public FieldDisplay(String name, Object value, String dataType, String[] paramType) {
         super();
         this.name = name;
         this.value = value;
         this.dataType = dataType;
         this.paramType = paramType;
     }
-
-
 
     /**
      * @return the name
@@ -106,7 +105,7 @@ public class DisplayBase {
     /**
      * @return
      * @author abhishek
-     * @since  1.0
+     * @since 1.0
      */
     public boolean isArray() {
         if (null == dataType) {
@@ -122,6 +121,6 @@ public class DisplayBase {
      */
     @Override
     public String toString() {
-        return "DisplayBase [ " + getName() + " : " + getValue().toString() + " : " + getDataType() + " ( " + getParamType().length + " ) ]";
+        return "FieldDisplay [ " + getName() + " : " + getValue().toString() + " : " + getDataType() + " ( " + getParamType().length + " ) ]";
     }
 }

@@ -34,7 +34,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.abhishek.simplicitas.display.domain.DisplayBase;
+import org.abhishek.simplicitas.display.dto.FieldDisplay;
 
 /**
  * Simple utility class for working with the reflection API.
@@ -49,8 +49,8 @@ public class ReflectionUtils extends ExceptionUtils {
      * @author abhishek
      * @since  1.0
      */
-    public static List<DisplayBase> extractClassFieldsForDisplay(Object target) {
-        List<DisplayBase> displays = new ArrayList<DisplayBase>();
+    public static List<FieldDisplay> extractClassFieldsForDisplay(Object target) {
+        List<FieldDisplay> displays = new ArrayList<FieldDisplay>();
 
         // Keep backing up the inheritance hierarchy.
         Class<?> targetClass = target.getClass();
@@ -98,7 +98,7 @@ public class ReflectionUtils extends ExceptionUtils {
                     }
                 }
 
-                displays.add(new DisplayBase(field.getName(), fieldValue, fieldType, parameterTypes));
+                displays.add(new FieldDisplay(field.getName(), fieldValue, fieldType, parameterTypes));
             }
             targetClass = targetClass.getSuperclass();
         }
@@ -114,10 +114,10 @@ public class ReflectionUtils extends ExceptionUtils {
      * @author abhishek
      * @since  1.0
      */
-    public static <T> T extractDisplayFieldsAsObject(T target, List<DisplayBase> displays) {
+    public static <T> T extractDisplayFieldsAsObject(T target, List<FieldDisplay> displays) {
         // Keep backing up the inheritance hierarchy.
         Class<?> targetClass = target.getClass();
-        for (DisplayBase display : displays) {
+        for (FieldDisplay display : displays) {
             setField(findField(targetClass, display.getName()), target, display.getValue());
         }
         return target;

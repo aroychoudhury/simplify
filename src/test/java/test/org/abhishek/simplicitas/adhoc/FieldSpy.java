@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.abhishek.simplicitas.display.domain.DisplayBase;
+import org.abhishek.simplicitas.display.dto.FieldDisplay;
 import org.abhishek.simplicitas.html.enums.TagNameEnum;
 import org.abhishek.simplicitas.util.common.ReflectionUtils;
 
@@ -41,8 +41,8 @@ public class FieldSpy<T> {
         spy.arr = new Object[][]{ { new String("Abhishek") }, { new String("Abhishek") } };
         spy.tag = TagNameEnum.TABLE;
 
-        List<DisplayBase> displays = ReflectionUtils.extractClassFieldsForDisplay(spy);
-        for (DisplayBase display : displays) {
+        List<FieldDisplay> displays = ReflectionUtils.extractClassFieldsForDisplay(spy);
+        for (FieldDisplay display : displays) {
             System.out.println(display);
         }
         System.out.println("-----------------------------------------------------------------");
